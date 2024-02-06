@@ -4,15 +4,15 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.weatherbroadcast.Controllers.Controller">
-   <children>
-      <VBox prefHeight="400.0" prefWidth="442.0">
-         <ComboBox fx:id="citySelector" prefHeight="26.0" prefWidth="161.0" />
-         <HBox prefHeight="100.0" prefWidth="200.0">
-            <Label fx:id="cityName" prefHeight="164.0" prefWidth="202.0" text="Label" textAlignment="CENTER" />
-            <Label fx:id="cityTemp" prefHeight="152.0" prefWidth="173.0" text="Label" textAlignment="CENTER" />
-            <ImageView fx:id="weatherImg" fitHeight="152.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
-         </HBox>
-      </VBox>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0"
+            prefWidth="442.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.weatherbroadcast.Controllers.Controller">
+   <VBox prefHeight="400.0" prefWidth="442.0">
+      <ComboBox fx:id="citySelector" prefHeight="26.0" prefWidth="161.0"/>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <Label fx:id="cityName" prefHeight="164.0" prefWidth="202.0" text="Label" textAlignment="CENTER"/>
+         <Label fx:id="cityTemp" prefHeight="152.0" prefWidth="173.0" text="Label" textAlignment="CENTER"/>
+         <ImageView fx:id="weatherImg" fitHeight="152.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true"/>
+      </HBox>
+   </VBox>
 </AnchorPane>

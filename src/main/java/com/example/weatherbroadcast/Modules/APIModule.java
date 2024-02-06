@@ -22,14 +22,18 @@ public class APIModule {
             int responseCode = connection.getResponseCode();
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
+
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String inputLine;
                 StringBuffer response = new StringBuffer();
+
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     response.append(inputLine);
                 }
+
                 bufferedReader.close();
                 System.out.println("Success: "+response.toString());
+
                 Parser parser = new Parser(response.toString(), controller);
                 parser.saveJSON();
                 parser.uploadJSON();
@@ -37,7 +41,9 @@ public class APIModule {
             }else{
                 System.out.println("Error: "+responseCode);
             }
+
             connection.disconnect();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
