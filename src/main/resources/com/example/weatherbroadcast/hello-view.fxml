@@ -1,18 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0"
-            prefWidth="442.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.weatherbroadcast.Controllers.Controller">
-   <VBox prefHeight="400.0" prefWidth="442.0">
-      <ComboBox fx:id="citySelector" prefHeight="26.0" prefWidth="161.0"/>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <Label fx:id="cityName" prefHeight="164.0" prefWidth="202.0" text="Label" textAlignment="CENTER"/>
-         <Label fx:id="cityTemp" prefHeight="152.0" prefWidth="173.0" text="Label" textAlignment="CENTER"/>
-         <ImageView fx:id="weatherImg" fitHeight="152.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true"/>
-      </HBox>
+<AnchorPane maxHeight="500" maxWidth="300" minHeight="458.0" minWidth="300" prefHeight="458.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.weatherbroadcast.Controllers.Controller">
+   <VBox alignment="TOP_CENTER" layoutY="1.0" prefHeight="458.0" prefWidth="300.0">
+      <TextField fx:id="cityField" onAction="#onEnterPressed" prefHeight="62.0" prefWidth="277.0" promptText="Find city by it's name" />
+      <VBox alignment="CENTER" prefHeight="398.0" prefWidth="288.0">
+         <ImageView fx:id="weatherImg" fitHeight="137.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+         <Label fx:id="temp" alignment="CENTER" prefHeight="83.0" prefWidth="303.0" text="Temperature" textAlignment="CENTER">
+            <font>
+               <Font size="30.0" />
+            </font>
+         </Label>
+         <Label fx:id="city" alignment="CENTER" prefHeight="87.0" prefWidth="320.0" text="City" textAlignment="CENTER">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Label>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <VBox alignment="TOP_CENTER" prefHeight="97.0" prefWidth="171.0">
+               <Label text="Humidity">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Label>
+               <Label fx:id="humidity" text="50%">
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+               </Label>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="97.0" prefWidth="160.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <Label text="Wind Speed">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Label>
+               <Label fx:id="windSpeed" text="1 km/h">
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+               </Label>
+            </VBox>
+         </HBox>
+      </VBox>
    </VBox>
 </AnchorPane>

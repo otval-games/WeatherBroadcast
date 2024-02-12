@@ -3,7 +3,7 @@ module com.example.weatherbroadcast {
     requires javafx.fxml;
 
     requires com.dlsc.formsfx;
-    requires com.google.gson;
+    requires org.json.chargebee;
 
     opens com.example.weatherbroadcast to javafx.fxml;
     exports com.example.weatherbroadcast;

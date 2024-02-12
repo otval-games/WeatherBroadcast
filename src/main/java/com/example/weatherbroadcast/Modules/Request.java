@@ -7,12 +7,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class APIModule {
-    private final Controller controller;
-    public APIModule(Controller controller){
-        this.controller = controller;
+public class Request {
+    public Request(String city, Controller controller){
 
-        String APIURL = "http://api.openweathermap.org/data/2.5/forecast?lat=50.27&lon=30.31&appid=1d363bc3816d0780818cf2deb3a3d536";
+        String APIURL = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=1d363bc3816d0780818cf2deb3a3d536";
+
         try {
             URL url = new URL(APIURL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -24,21 +23,19 @@ public class APIModule {
             if (responseCode == HttpURLConnection.HTTP_OK) {
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
                 String inputLine;
-                StringBuffer response = new StringBuffer();
 
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     response.append(inputLine);
                 }
 
                 bufferedReader.close();
-                System.out.println("Success: "+response.toString());
+                System.out.println("Success: "+response);
 
-                Parser parser = new Parser(response.toString(), controller);
-                parser.saveJSON();
-                parser.uploadJSON();
+                Parser.parseJSON(response.toString(), city, controller);
 
-            }else{
+            }else {
                 System.out.println("Error: "+responseCode);
             }
 

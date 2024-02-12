@@ -1,47 +1,37 @@
 package com.example.weatherbroadcast.Modules;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
-
 import com.example.weatherbroadcast.Controllers.Controller;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import javafx.application.Platform;
 
 public class Parser {
-    private static final String TAG_FILENAME = "forecast.json";
-    private final Controller controller;
-    private String requestName;
 
-    public Parser(String requestName, Controller controller) {
-        this.controller = controller;
-        this.requestName=requestName;
-    }
+    public static void parseJSON(String jsonResponse, String city, Controller controller) throws JSONException {
 
-    public  void saveJSON(){
-        Gson gson = new Gson();
+        JSONObject jsonObject = new JSONObject(jsonResponse);
 
-        try (FileWriter writer = new FileWriter(TAG_FILENAME)){
-            gson.toJson(requestName, writer);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
+        JSONArray weatherArray = jsonObject.getJSONArray("weather");
+        JSONObject weather = weatherArray.getJSONObject(0);
 
-    public  void uploadJSON() {
-        Gson gson = new Gson();
+        JSONObject main = jsonObject.getJSONObject("main");
 
-        try (FileReader reader = new FileReader(TAG_FILENAME)){
+        double temperature = Math.round(main.getDouble("temp")-273.15);
 
-            Type rectType = new TypeToken<String>(){}.getType();
-            String result = gson.fromJson(reader, rectType);
+        double humidity = main.getDouble("humidity");
 
-            System.out.println("JSON forecast: "+result);
+        JSONObject wind = jsonObject.getJSONObject("wind");
+        double windSpeed = wind.getDouble("speed");
 
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+        String icon = weather.getString("icon");
+
+        Platform.runLater(() -> {
+            controller.city.setText(city);
+            controller.temp.setText((temperature)+"°");
+            controller.humidity.setText((humidity)+"%");
+            controller.windSpeed.setText((windSpeed)+"km/h");
+            controller.setWeatherImage(icon);
+        });
     }
 }
